@@ -1,0 +1,19 @@
+{
+  "name": "assignnment",
+  "version": "1.0.0",
+  "description": "assignment",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Vanshaj Tiwari",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "mysql": "^2.18.1",
+    "nodemon": "^2.0.22",
+    "parcel": "^2.9.3",
+    "urlencode": "^1.1.0"
+  },
+  "type": "module"
+}

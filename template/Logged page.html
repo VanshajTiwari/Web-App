@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logged</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+          @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Nunito:wght@400;500&family=Quicksand:wght@300;400;500;600;700&display=swap');
+      
+    *{
+        margin:0;
+        padding:0;
+        box-sizing: border-box;
+        font-family: 'Nunito',sans-serif;
+    }
+    body{
+        width: 100%;
+        height:100vh;
+        background-color: black;
+    }
+    header{
+        background-color: black;
+        height:20%;
+    }
+    header nav{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        color:white;
+
+    }
+    img{
+        border-radius: 50%;
+        width: 100px;
+        height: 100px;
+        font-size: 10rem;
+        color:white;
+    }
+    .data{
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+    }
+    .data span{
+        margin:2rem;
+        font-size:3rem;
+    }
+    .data img{
+        margin: 2rem;
+    }
+    .logout a {
+        text-decoration: none;
+        background-color: white;
+        margin:1rem;
+        font-size:2rem ;
+        border-radius: 1rem;
+        padding:0.5rem;
+       transition: 0.5s;
+    }
+    a:hover{
+        padding: 1rem;
+    }
+    .admin-tag{
+        height:7%;
+        background-color: green;
+        font-size: 2rem;
+    
+        overflow: hidden;
+        text-align: center;
+    }
+    main{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: auto;
+        width: 100%;
+        
+    }
+    @keyframes show {
+        0%{transform: scale(0);}
+        50%{transform: scale(1.059);}
+        100%{transform: scale(1);}
+    }
+    .user{
+        position: relative;
+        padding: 2rem;
+        background-color: white;
+        color:black;
+        transition: 0.6s ease-in-out;
+        font-size: 4rem;
+        margin-top: 3rem;
+        animation: show 1s linear 1;
+        border-radius: 3rem;
+    }
+    .display{
+        display: none;
+    }
+    .admin-side{
+        background-color: black;
+        color:white;
+        width: 100%;
+        height: auto;
+        padding:1rem;
+    }
+    table tr{
+        text-align: center;
+    }
+    th, td{
+            border:1px solid white;
+            padding: 1rem;
+            font-size: 1.5rem;
+    }
+</style>
+<body>
+    
+        <header>
+            <nav>
+                
+                <div class="data">
+                    <img src="" alt="error">
+                    <span>%username%</span>
+                    
+                </div>
+                <div class="logout"><a href="/logout">Logout</a></div>
+            </nav>
+        </header>
+        <div class="admin-tag display"><span>welcome Admin</span></div>    
+        <main class="main-C">
+            
+            <div class="user">
+                <p>Welcome</p>
+            </div >
+            <table class="admin-side display">
+                        <tr>
+                            <th>FirstName</th>
+                            <th>LastName</th>
+                            <th>Email</th>
+                            <th>UserName</th>
+                            <th>Password</th>
+                        </tr>
+                       %datum%
+                    </table>
+                      
+                    
+                </main>
+         
+              
+            
+        </main>
+</body>
+<script>
+     history.pushState(null, null, document.title);
+window.addEventListener('popstate', function () {
+    history.pushState(null, null, document.title);
+});
+    const user=document.querySelector('.user');
+    const tag=document.querySelector('.admin-tag');
+    const admin=document.querySelector('.admin-side');
+//   console.log(document.querySelector('.data'));
+   // console.log(user,tag,admin);
+        (async function promise(){
+        let res=await fetch("https://randomuser.me/api/"); 
+        res=await res.json();
+        //console.log(res.results[0].picture.medium);
+        document.querySelector("img").src=res.results[0].picture.medium;})();
+  //  promise().then((res,err)=>=res);
+    if(document.querySelector('.data').querySelector('span').innerHTML==="%admin%"){
+      //  console.log('yeah')
+        user.classList.add('display');
+        tag.classList.remove('display');
+        admin.classList.remove('display');
+    }
+     
+    else{
+        user.classList.remove('display');
+        tag.classList.add('display');
+        admin.classList.add('display');
+    }   
+    
+    
+    
+
+</script>
+</html>

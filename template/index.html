@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Nunito:wght@400;500&family=Quicksand:wght@300;400;500;600;700&display=swap');
+        *{
+            margin:0;
+            padding:0;
+            box-sizing: border-box;
+            font-family:"Nunito",sans-serif;
+        }
+        body{
+            width: 100%;
+            height:100vh;
+            background-image: url("https://static.vecteezy.com/system/resources/previews/000/293/523/large_2x/night-forest-scene-background-vector.jpg");
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            display: flex;
+            align-items: center;
+        }
+
+        body main{
+            width: 25%;
+            min-width: 280px;
+            max-height:500px;
+            background-color: rgba(255,255,255,0.4);
+            margin: auto; 
+            text-align: center;
+            border-radius: 0.5rem;
+            display: flex;
+            overflow: hidden;
+            animation: show 1s linear 1 ;
+            transition: all 0.6s;
+        }
+        @keyframes show {
+            0%{transform: scale(1);}
+            50%{transform: scale(1.1);}
+            100%{transform: scale(1);}
+            
+        }
+        .mainify{
+            display: flex;
+            min-width: 100%;
+            position: relative;
+            transform: translateX(0%);
+            transition: all 1s;
+        }
+        main:nth-child(1) h1{
+                color:white;
+                margin: 1.7rem;
+                font-size: 3.7rem;
+                animation: show 1s linear 2s infinite ;
+        }
+        .form-main{
+            min-width: 100%;
+            position: relative;
+        }
+        .active{
+            height: auto;
+        }
+        form{
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+          
+        }
+        form input{
+            margin: auto;
+            width:80%;
+            height: 3rem;
+            border-radius:0.5rem;
+            font-size: 1.3rem;
+            padding-inline-start: 1rem;
+            border-width: 0;
+        }
+        form input::placeholder{
+            font-size: 1.2rem;
+        }
+        .registerTo{
+            margin-top: 1rem;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+        @media screen and (max-width: 400px) {
+            body{
+                background-size: contain;
+            }
+            body main{
+                min-width:100%;
+                min-height:100%;
+                border-radius: 0rem;
+                margin: 0;
+                padding:0 ;
+                
+                
+            }
+
+            main:nth-child(1) h1{
+                font-size: 3.5rem;
+            }
+        }
+        .not_FOUND{
+            animation:show 1s linear infinite ;color:red;
+        }
+        .display{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <main>
+       <div class="mainify">
+        <div class="form-main">
+            <h1>Log In</h1>
+            <form action="/profile" method="post" class="loginForm form">
+                <input type="text" name="Email" placeholder="Username" required>
+                <input type="password" name="password" placeholder="password"  required>
+                <input type="submit" value="submit">
+            </form>
+            <div class="registerTo">
+                <span>Not registered? </span><a href="" id="register">Click here</a></div>
+                <div class="not_FOUND display"><span>User Not Found!</span></div>
+           </div>
+           
+        <div  class="form-main Register">
+            <h1>Register</h1>
+            <form action="/submitted" method="post" class="registerForm form" required>
+                <input type="text" placeholder="FirstName" name="Firstname" required>
+                <input type="text" placeholder="LastName" name="Lastame" required>
+                <input type="text" placeholder="Email" name="Email" required>
+                <input type="text" placeholder="UserName" name="UserName" required>
+                <input type="password" placeholder="Password" name="password" required>
+                <input type="submit" value="submit">
+
+            </form>
+            <div class="registerTo">
+                <span>Already registered? </span><a href="" id="login">Click here</a></div>
+           </div>
+       </div>
+        </main>
+   
+
+</body>
+<script>
+   const notFound=document.querySelector(".not_FOUND");
+    const Main=document.querySelector("main");
+    const regiForm=document.querySelector(".registerForm");
+    const main=document.querySelector(".mainify");
+    const register=document.getElementById('register');
+    const login=document.getElementById("login");
+    if(!"%flag%")notFound.classList.add('display');
+    else notFound.classList.remove('display');
+    register.addEventListener("click",(e)=>{e.preventDefault();toRegister()});
+    function toRegister(){
+       
+        main.style.transform="translateX(-100%)";
+        Main.style.maxHeight="700px";
+        
+        regiForm.style.gap="1rem";
+    }
+    login.addEventListener("click",(e)=>{e.preventDefault();toLogin()});
+    ///////////////////////// LogIN
+    const loginForm=document.querySelector(".loginForm");
+
+    function toLogin(){
+        main.style.transform="translateX(0%)";
+        Main.style.maxHeight="500px";
+    }
+    loginForm.addEventListener('submit',(e)=>{
+     //   e.preventDefault();
+        const DataArr=loginForm.querySelectorAll("input");
+       // console.log(DataArr[1].value); 
+        const data=[DataArr[0].value,DataArr[1].value];
+        console.log(data);
+        
+        
+        });
+    //////////////////////////// REgister
+    
+    regiForm.addEventListener('submit',(e)=>{//e.preventDefault();
+        console.log(form);
+        const dataArr=regiForm.querySelectorAll("input");
+        console.log(dataArr);
+        console.log(dataArr[0].value);
+        const data=[dataArr[0].value,dataArr[1].value,dataArr[2].value,
+                    dataArr[3].value,dataArr[4].value];
+        console.log(data);
+    });
+    
+</script>
+
+</html>
